@@ -1,0 +1,50 @@
+Node-Mailer:-
+solution 1:- 
+let otp = Math.floor(Math.random() * 100000);
+
+        const nodemailer = require('nodemailer');
+        let transporter = nodemailer.createTransport({
+            host: 'smtp.gmail.com',
+            port: 587,
+            secure: false,
+            auth: {
+                user: 'niharlunagariya123@gmail.com',
+                pass: 'udsiocosuzupqmtt'
+            }
+        });
+
+        let mailOptions = {
+            from: 'niharlunagariya123@gmail.com',
+            to: email,
+            subject: 'Forgot password',
+            text: 'your otp :- '+otp
+        };
+   
+        // send email
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.log(error);
+                res.status(500).send(error);
+            } else {
+                console.log('Email sent: ' + info.response);
+                res.send('Email sent');
+            }
+        });
+
+solution 2:-
+ const client = nodemailer.createTransport({
+            service: "Gmail",
+            auth: {
+                user: "niharlunagariya123@gmail.com",
+                pass: "udsiocosuzupqmtt"
+            }
+        });
+       
+        client.sendMail(
+            {
+                from: "niharlunagariya123@gmail.com",
+                to: email,
+                subject: "Sending it from Heroku",
+                text: "Hey, I'm being sent from the cloud"
+            }
+        )
